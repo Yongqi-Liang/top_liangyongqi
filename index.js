@@ -15,16 +15,17 @@ $(document).ready(function () {
 
 // IP 地址查询
 document.addEventListener("DOMContentLoaded", function() {
-  fetch('https://api.jisuapi.com/ip/location?appkey=c812e10685414c68')
-    .then(response => response.json())
-    .then(data => {
-      if (data.status === 0) {
-        const result = data.result;
-        const locationInfo = `${result.country} ${result.area} ${result.type} ${result.ip}`;
-        document.getElementById('location-info').textContent = locationInfo;
-      } else {
-        console.error('API 请求失败:', data.msg);
-      }
-    })
-    .catch(error => console.error('请求错误:', error));
+  const script = document.createElement('script');
+  script.src = 'https://api.jisuapi.com/ip/location?appkey=c812e10685414c68&callback=displayLocation';
+  document.body.appendChild(script);
 });
+
+function displayLocation(data) {
+  if (data.status === 0) {
+    const result = data.result;
+    const locationInfo = `${result.country} ${result.area} ${result.type} ${result.ip}`;
+    document.getElementById('location-info').textContent = locationInfo;
+  } else {
+    console.error('API 请求失败:', data.msg);
+  }
+}
