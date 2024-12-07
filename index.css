@@ -149,3 +149,25 @@ h1, p {
     align-items: center;
     margin-left: auto;
   }
+  .site {
+    border-radius: 3px;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center; /* 只垂直居中 */
+    cursor: pointer;
+  }
+  .site img {
+    margin-right: 10px; /* 为图像和文本之间添加一些间距 */
+    width: 32px;
+    height: 32px;
+  }
+  .site p {
+    margin: 0; /* 确保段落没有额外的外边距 */
+  }
+  .site:hover {
+    background-color: rgba(0, 0, 0, 0.246);
+  }
+  .site:active {
+    background-color: rgba(0, 0, 0, 0.328);
+  }
