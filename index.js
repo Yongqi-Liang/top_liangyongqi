@@ -14,18 +14,10 @@ $(document).ready(function () {
 
 
 // IP 地址查询
-document.addEventListener("DOMContentLoaded", function() {
-  const script = document.createElement('script');
-  script.src = 'https://api.jisuapi.com/ip/location?appkey=c812e10685414c68&callback=handleResponse';
-  document.body.appendChild(script);
-});
-
-function handleResponse(data) {
-  if (data.status === 0) {
-    const result = data.result;
-    const locationInfo = `${result.country} ${result.area} ${result.type} ${result.ip}`;
+fetch('http://ip-api.com/json/')
+  .then(response => response.json())
+  .then(data => {
+    const locationInfo = `${data.country} ${data.regionName} ${data.city} ${data.query}`;
     document.getElementById('location-info').textContent = locationInfo;
-  } else {
-    console.error('API 请求失败:', data.msg);
-  }
-}
+  })
+  .catch(error => console.error('请求错误:', error));
