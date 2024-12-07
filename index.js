@@ -16,11 +16,11 @@ $(document).ready(function () {
 // IP 地址查询
 document.addEventListener("DOMContentLoaded", function() {
   const script = document.createElement('script');
-  script.src = 'https://api.jisuapi.com/ip/location?appkey=c812e10685414c68&callback=displayLocation';
+  script.src = 'https://api.jisuapi.com/ip/location?appkey=c812e10685414c68&callback=handleResponse';
   document.body.appendChild(script);
 });
 
-function displayLocation(data) {
+function handleResponse(data) {
   if (data.status === 0) {
     const result = data.result;
     const locationInfo = `${result.country} ${result.area} ${result.type} ${result.ip}`;
